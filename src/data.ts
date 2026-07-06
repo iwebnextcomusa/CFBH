@@ -15,7 +15,7 @@ export const PROVIDERS: Provider[] = [
     credentials: "LCSW, Clinical Social Worker & Therapist",
     specialty: "Individual, Family & Cognitive Behavioral Therapy",
     bio: "Patricia is an empathetic clinical social worker dedicated to helping children, adolescents, and adults navigate life transitions, relational challenges, and trauma. Utilizing Cognitive Behavioral Therapy (CBT), mindfulness practices, and client-centered psychotherapy, she partners with patients to build resilience and positive coping mechanisms.",
-    photoUrl: "https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=600"
+    photoUrl: "/src/assets/images/patricia_furst_portrait_1783363025373.jpg"
   }
 ];
 

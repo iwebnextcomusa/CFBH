@@ -2,8 +2,7 @@ import React from "react";
 import { View } from "../types";
 import { SERVICES, TESTIMONIALS } from "../data";
 import { motion } from "motion/react";
-import { Phone, Calendar, ArrowRight, Shield, Award, Users, MapPin, Video, CheckCircle, Heart, Star } from "lucide-react";
-import MindfulnessCanvas from "./MindfulnessCanvas";
+import { Phone, Calendar, ArrowRight, Shield, Award, Users, MapPin, Video, CheckCircle, Heart, Star, Volume2, VolumeX } from "lucide-react";
 
 interface HomeViewProps {
   setCurrentView: (view: View) => void;
@@ -11,20 +10,38 @@ interface HomeViewProps {
 }
 
 export default function HomeView({ setCurrentView, setSelectedServiceId }: HomeViewProps) {
+  const [isMuted, setIsMuted] = React.useState(true);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+    }
+    setIsMuted(!isMuted);
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1 }
+      transition: { 
+        staggerChildren: 0.15,
+        delayChildren: 0.1
+      }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { type: "spring", stiffness: 100, damping: 15 }
+      transition: { 
+        type: "spring", 
+        stiffness: 80, 
+        damping: 14,
+        mass: 1
+      }
     }
   };
 
@@ -39,16 +56,46 @@ export default function HomeView({ setCurrentView, setSelectedServiceId }: HomeV
       
       {/* 1. Hero Section */}
       <section id="hero-section" className="relative py-20 md:py-28 lg:py-32 overflow-hidden font-sans min-h-[600px] flex items-center">
-        {/* Calming Sunlit Forest Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center scale-105"
-          style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&q=80&w=1600')`
-          }}
-        />
+        {/* Ambient Video & Forest Image Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Calming fallback background image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center scale-105"
+            style={{ 
+              backgroundImage: `url('https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&q=80&w=1600')`
+            }}
+          />
+          {/* High-quality autoplaying ambient video */}
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted={isMuted}
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover scale-105 opacity-85"
+          >
+            <source src="https://vq8gx571fdtu5hbl.public.blob.vercel-storage.com/CFBH.mp4" type="video/mp4" />
+          </video>
+        </div>
         
         {/* Ambient Overlay for pristine contrast and high-readability */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-slate-50/95 via-slate-50/90 to-teal-50/85 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-white/75 via-white/65 to-teal-50/50 backdrop-blur-[0.5px]" />
+        
+        {/* Ambient Video Sound Control */}
+        <div className="absolute bottom-6 right-6 z-20">
+          <button
+            onClick={toggleMute}
+            className="flex items-center justify-center w-12 h-12 rounded-full bg-white/90 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-lg backdrop-blur-md text-slate-700 hover:text-teal-600 transition-all hover:scale-105 active:scale-95 cursor-pointer"
+            title={isMuted ? "Unmute ambient forest sound" : "Mute ambient forest sound"}
+            aria-label={isMuted ? "Unmute ambient forest sound" : "Mute ambient forest sound"}
+          >
+            {isMuted ? (
+              <VolumeX className="w-5 h-5 text-slate-500 animate-pulse" />
+            ) : (
+              <Volume2 className="w-5 h-5 text-teal-600" />
+            )}
+          </button>
+        </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
@@ -192,51 +239,6 @@ export default function HomeView({ setCurrentView, setSelectedServiceId }: HomeV
               </motion.div>
             ))}
           </motion.div>
-        </div>
-      </section>
-
-      {/* 4. Interactive 3D Mindfulness Section */}
-      <section id="interactive-3d-section" className="py-16 md:py-24 bg-white border-b border-slate-50 font-sans">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            {/* 3D Canvas */}
-            <div className="lg:col-span-6 order-last lg:order-first">
-              <MindfulnessCanvas />
-            </div>
-
-            {/* Explanatory details */}
-            <div className="lg:col-span-6 space-y-6 text-left">
-              <span className="text-xs font-mono font-bold tracking-widest text-teal-600 bg-teal-50 px-3.5 py-1.5 rounded-full border border-teal-100 uppercase">
-                Interactive 3D Experience
-              </span>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                Aligning Science, Calm, and Human Interaction
-              </h2>
-              <p className="text-md text-slate-600 leading-relaxed font-medium">
-                Our mind is dynamic, filled with swirling thoughts, stress, and anxiety. Cultivating physical and biological relaxation is an essential therapeutic component. 
-              </p>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Use our customized 3D breathing guide on the left to complete a basic mindfulness exercise. By syncing your breath (4-second inhale, slow hold, 4-second exhale) with the expanding wave network, you trigger your parasympathetic nervous system to slow heart rate, reduce cortisol levels, and ease persistent tension.
-              </p>
-              
-              <div className="space-y-3 pt-2">
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-teal-600 shrink-0" />
-                  <span className="text-xs font-semibold text-slate-700">Immediate somatic relaxation exercise</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-teal-600 shrink-0" />
-                  <span className="text-xs font-semibold text-slate-700">Demonstrates the bio-behavioral connection</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-teal-600 shrink-0" />
-                  <span className="text-xs font-semibold text-slate-700">Calming visual focus tool</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
         </div>
       </section>
 

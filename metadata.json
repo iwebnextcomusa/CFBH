@@ -1,0 +1,6 @@
+{
+  "name": "Center For Behavioral Health",
+  "description": "A complete, modern, and compassionate web portal for the Center For Behavioral Health practice in East Brunswick, NJ, featuring appointment scheduling, service descriptions, insurance details, and an empathetic AI assistant.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

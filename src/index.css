@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  
+  /* Natural Tones palette over the Tailwind standard slate/teal/sky variables */
+  
+  /* 1. Base/Slate -> Earthy Sand and Charcoal Wood */
+  --color-slate-50: #faf8f5;     /* Warm Cream Background */
+  --color-slate-100: #f4eee1;    /* Light Sand */
+  --color-slate-200: #e8ded2;    /* Warm beige/border */
+  --color-slate-300: #dbcdbd;    /* Muted sand-earth */
+  --color-slate-400: #bba998;    /* Sandy clay secondary */
+  --color-slate-500: #8c7664;    /* Light earth text */
+  --color-slate-600: #735d4d;    /* Medium earth text */
+  --color-slate-700: #5c4a3c;    /* Deep earth text */
+  --color-slate-800: #423429;    /* Dark clay charcoal */
+  --color-slate-900: #291e17;    /* Deepest warm charcoal */
+
+  /* 2. Teal -> Moss and Sage Greens */
+  --color-teal-50: #f5f6f2;     /* Very pale sage-cream */
+  --color-teal-100: #e6e8de;    /* Pale moss border */
+  --color-teal-200: #ccd1be;    /* Muted sage-border */
+  --color-teal-300: #b0b89d;    /* Sage mid */
+  --color-teal-400: #939d7b;    /* Sage dark */
+  --color-teal-500: #76805c;    /* Moss green */
+  --color-teal-600: #5c6643;    /* Earthy Olive/Moss green (Primary) */
+  --color-teal-700: #454d32;    /* Dark moss */
+  --color-teal-800: #303522;    /* Deep forest */
+  --color-teal-900: #1b1e13;    /* Deepest moss-shadow */
+
+  /* 3. Sky -> Terracotta and Warm Clay Ochre */
+  --color-sky-50: #fbf8f5;      /* Terracotta pale background */
+  --color-sky-100: #f5eae2;     /* Terracotta light accent */
+  --color-sky-200: #ecd5c4;     /* Terracotta border */
+  --color-sky-300: #e1bfa5;     /* Soft clay */
+  --color-sky-400: #d5a585;     /* Mid clay */
+  --color-sky-500: #ca8b63;     /* Ochre / Terracotta active */
+  --color-sky-600: #bd754d;     /* Deep Terracotta / Ochre (Secondary) */
+  --color-sky-700: #a15d39;     /* Deep terracotta */
+  --color-sky-800: #7d4425;     /* Dark rust */
+  --color-sky-900: #4e2612;     /* Deepest rust shadow */
+  
+  /* 4. Amber -> Warm Mustard Gold */
+  --color-amber-50: #fdfaf4;
+  --color-amber-100: #faf1db;
+  --color-amber-500: #d4a339;
+  --color-amber-600: #b28524;
+  --color-amber-800: #805b1b;
+}
+
+/* Global Typography and Enhancements for Therapeutic Aesthetic */
+h1, h2, h3, .font-serif-display {
+  font-family: var(--font-serif), ui-serif, Georgia, serif !important;
+  letter-spacing: -0.015em;
+}
+
+body {
+  background-color: var(--color-slate-50);
+  color: var(--color-slate-900);
+}
+
+/* Selection aesthetics */
+::selection {
+  background-color: var(--color-teal-100);
+  color: var(--color-teal-900);
+}
+
+/* Rounded, soft, warm-tone focus state styles */
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid var(--color-teal-500) !important;
+  outline-offset: 1px;
+}
